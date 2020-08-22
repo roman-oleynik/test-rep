@@ -27,10 +27,7 @@ export function TextOfCard({
             // Decision about '<p role="button"></p>' was made in order to fix the bug in Edge.
             // It doesn't like when a <button> tag places into a <label> and hides the button
             // when a user wants to hover the "Котэ не одобряет?"
-            <p
-                role="button"
-                className="food-item__dislike"
-            >Котэ не одобряет?</p>
+            <p className="food-item__dislike">Котэ не одобряет?</p>
             :
             <p className="food-item__text">Сказочное заморское яство</p>
         }
