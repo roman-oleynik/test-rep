@@ -1,0 +1,34 @@
+@import '../../../utils/scss/utils.scss';
+
+.food-item__mask {
+    position: absolute;
+    bottom: 0.7vw;
+    left: 0.6vw;
+    @include setSize(28vw, 28vw);
+    overflow: hidden;
+    border-radius: 0.5vw;
+    
+    .food-item__image {
+        position: absolute;
+        bottom: -8vw;
+        left: -2.5vw;
+        @include setSize(inherit, inherit);
+    }
+    .food-item__image_dis {
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 992px) {
+    .food-item__mask {
+        bottom: 7px;
+        left: 6px;
+        @include setSize(280px, 280px);
+        border-radius: 5px;
+        
+        .food-item__image {
+            bottom: -80px;
+            left: -25px;
+        }
+    }
+}

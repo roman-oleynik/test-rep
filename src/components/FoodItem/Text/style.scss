@@ -1,0 +1,75 @@
+@import '../../../utils/scss/utils.scss';
+
+
+.food-item__header {
+    position: absolute;
+    top: 0;
+    left: 2vw;
+    @include flex(column, flex-start, flex-start, nowrap);
+    padding-left: 3vw;
+    
+    .food-item__dislike {
+        color: $violet;
+        background: transparent;
+        border: 0;
+        padding: 1vw 0;
+        @extend .font;
+        font-size: 1.35vw;
+    }
+    .food-item__text {
+        font-size: 1.35vw;
+        padding: 1vw 0;
+    }
+    .food-item__title {
+        font-size: 3.4vw;
+        line-height: 3.4vw;
+        text-align: left;
+
+        .small-title {
+            font-size: 2.5vw;
+        }
+    }
+    .food-item__list {
+        padding-top: 1vw;
+        list-style: none;
+        @include flex(column, flex-start, flex-start);
+
+        .food-item__item {
+            font-size: $small;
+        }
+    }
+}
+.food-item__header_dis {
+    opacity: 0.5;
+}
+
+@media (max-width: 992px) {
+    .food-item__header {
+        left: 20px;
+        padding-left: 30px;
+        
+        .food-item__dislike {
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        .food-item__text {
+            font-size: 14px;
+            padding: 10px 0;
+        }
+        .food-item__title {
+            font-size: 32px;
+            line-height: 32px;
+    
+            .small-title {
+                font-size: 24px;
+            }
+        }
+        .food-item__list {
+            padding-top: 10px;
+    
+            .food-item__item {
+                font-size: 14px;
+            }
+        }
+    }
+}

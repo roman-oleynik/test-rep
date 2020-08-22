@@ -1,0 +1,37 @@
+.cleaner {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.font {
+    font-family: Exo sans-serif;
+}
+.round-off {
+    border-radius: 50%;
+}
+.reset-link-style {
+    text-decoration: none;
+    color: #ddd;
+}
+
+$blue: #1698d9;
+$lightblue: #2ea8e6;
+$violet: #d91667;
+$lightviolet: #e62e7a;
+$grey: #b3b3b3;
+$lightgrey: #f2f2f2;
+$white: #ddd;
+
+$small: 1.2vw;
+
+@mixin setSize($h: 0px, $w: 0px) {
+    height: $h;
+    width: $w;
+}
+@mixin flex($dir: row, $content: flex-start, $align: stretch, $wrap: nowrap) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $content;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
