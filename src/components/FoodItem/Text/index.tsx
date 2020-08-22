@@ -9,7 +9,6 @@ type Props = {
     isMouseOver: boolean
     isSelected: boolean
     isDisabled: boolean
-    disable: () => void
     model: CatFoodItem
 };
 
@@ -17,14 +16,13 @@ export function TextOfCard({
         isMouseOver, 
         isSelected, 
         isDisabled, 
-        disable,
         model
     }: Props) {
     const { filling, portions, mouses, isClientSatisfied } = model;
 
     return <header className={`food-item__header ${isDisabled ? "food-item__header_dis" : ""}`}>
         {
-            isMouseOver && isSelected && !isDisabled
+            !isMouseOver && isSelected && !isDisabled
             ?
             // Decision about '<p role="button"></p>' was made in order to fix the bug in Edge.
             // It doesn't like when a <button> tag places into a <label> and hides the button
@@ -32,7 +30,6 @@ export function TextOfCard({
             <p
                 role="button"
                 className="food-item__dislike"
-                onClick={disable}
             >Котэ не одобряет?</p>
             :
             <p className="food-item__text">Сказочное заморское яство</p>

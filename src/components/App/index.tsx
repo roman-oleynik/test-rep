@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FoodItem } from '../FoodItem/Root';
 import { CatFoodItem } from '../../model';
-import { Preloader } from './Preloader';
+import { Preloader } from '../Preloader';
 import './style.scss';
 
 type Props = {
@@ -39,7 +39,10 @@ export function App(props: Props) {
               model.length
               ?
               model.map((item: CatFoodItem, i: number) => {
-                return <FoodItem key={i} model = {item} />
+                return <FoodItem 
+                  key = {i} 
+                  model = {item}
+                />
               })
               :
               <p>Информация не найдена</p>

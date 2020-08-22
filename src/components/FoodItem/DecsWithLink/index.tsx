@@ -1,9 +1,17 @@
 import React from 'react';
 import './style.scss';
 
-export function DecsWithLink() {
+type Props = {
+    select: () => void
+};
+
+export function DecsWithLink(props: Props) {
     return <>
         {"Чего стоишь? Порадуй котэ, "}
-        <a aria-label="Купить корм" href="#" className="reset-link-style link_blue">купи.</a>
+        <button 
+            onClick={props.select}
+            aria-label="Купить корм" 
+            className="food-item__buy link_blue"
+        >купи.</button>
     </>
 }

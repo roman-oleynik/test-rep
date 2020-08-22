@@ -6,8 +6,9 @@ export type CatFoodItem = {
     mouses: number,
     isClientSatisfied: boolean,
     weight: number,
-    subContent: string
-    onDisable: string
+    subContent: string,
+    onDisable: string,
+    isDisabled: boolean
 }
 
 export const model: CatFoodItem[] = [
@@ -18,7 +19,8 @@ export const model: CatFoodItem[] = [
         isClientSatisfied: false,
         weight: 0.5,
         subContent: "Печень утки разварная с артишоками.",
-        onDisable: "Печалька, с фуа-гра закончился."
+        onDisable: "Печалька, с фуа-гра закончился.",
+        isDisabled: false
     },
     {
         filling: "с рыбой",
@@ -27,7 +29,8 @@ export const model: CatFoodItem[] = [
         isClientSatisfied: false,
         weight: 2,
         subContent: "Головы щучьи с чесноком да свежайшая сёмгушка.",
-        onDisable: "Печалька, с рыбой закончился."
+        onDisable: "Печалька, с рыбой закончился.",
+        isDisabled: false
     },
     {
         filling: "с курой",
@@ -36,6 +39,7 @@ export const model: CatFoodItem[] = [
         isClientSatisfied: true,
         weight: 5,
         subContent: "Филе цыплят с трюфелями в бульоне.",
-        onDisable: "Печалька, с курой закончился."
+        onDisable: "Печалька, с курой закончился.",
+        isDisabled: true
     }
 ];

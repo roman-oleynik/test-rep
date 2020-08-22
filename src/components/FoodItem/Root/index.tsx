@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import './style.scss';
 import { DecsWithLink } from '../DecsWithLink';
@@ -14,19 +14,21 @@ type Props = {
 
 
 export function FoodItem({ model }: Props) {
-    const { weight, subContent, onDisable, filling } = model;
+    const { weight, subContent, onDisable, filling, isDisabled } = model;
+    const checkbox = useRef<HTMLInputElement>(null);
 
     const [isSelected, setIsSelected] = useState(false);
-    const [isDisabled, setIsDisabled] = useState(false);
     const [isMouseOver, setIsMouseOver] = useState(false);
 
     const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsSelected(e.target.checked);
     };
-
-    const disable = () => {
-        setIsDisabled(true);
-    }
+    const select = () => {
+        setIsSelected(true);
+        if (checkbox.current) {
+            (checkbox.current as HTMLInputElement).checked = true;
+        }
+    };
 
     return (
         <section className="food-item" aria-label={`Нямушка ${filling}`}>
@@ -37,6 +39,7 @@ export function FoodItem({ model }: Props) {
                     type="checkbox"
                     disabled={isDisabled}
                     onChange={onCheckboxChange}
+                    ref={checkbox}
                 />
                 <div
                     className={`food-item__content ${isDisabled ? "food-item__content_dis" : ""}`}
@@ -50,7 +53,6 @@ export function FoodItem({ model }: Props) {
                         isMouseOver = {isMouseOver}
                         isSelected = {isSelected}
                         isDisabled = {isDisabled}
-                        disable = {disable}
                         model = {model}
                     />
                     <CatPicture isDisabled = {isDisabled} />
@@ -67,7 +69,7 @@ export function FoodItem({ model }: Props) {
                 {isDisabled && onDisable}
                 {isSelected && !isDisabled && subContent}
                 {!isSelected && !isDisabled && 
-                    <DecsWithLink />
+                    <DecsWithLink select={select} />
                 }
             </p>
         </section>

@@ -1,3 +1,13 @@
+$blue: #1698d9;
+$lightblue: #2ea8e6;
+$violet: #d91667;
+$lightviolet: #e62e7a;
+$grey: #b3b3b3;
+$lightgrey: #f2f2f2;
+$white: #ddd;
+
+$small: 1.2vw;
+
 .cleaner {
     margin: 0;
     padding: 0;
@@ -9,20 +19,18 @@
 .round-off {
     border-radius: 50%;
 }
-.reset-link-style {
-    text-decoration: none;
+.reset-button-style {
+    background: transparent;
+    border: 0;
+    font-size: 1.2vw;
+    @extend .font;
     color: #ddd;
 }
+.link_blue {
+    color: $blue;
+    border-bottom: 1px dotted $blue;
+}
 
-$blue: #1698d9;
-$lightblue: #2ea8e6;
-$violet: #d91667;
-$lightviolet: #e62e7a;
-$grey: #b3b3b3;
-$lightgrey: #f2f2f2;
-$white: #ddd;
-
-$small: 1.2vw;
 
 @mixin setSize($h: 0px, $w: 0px) {
     height: $h;

@@ -1,10 +1,17 @@
 @import '../../../utils/scss/utils.scss';
 
 .food-item__description {
-    font-size: $small;
+    font-size: 1.2vw;
     @extend .font;
     padding: 0.8vw 0;
     color: $white;
+
+    .food-item__buy {
+        background: transparent;
+        border: 0;
+        @extend .font;
+        font-size: inherit;
+    }
 
     .link_blue {
         color: $blue;
