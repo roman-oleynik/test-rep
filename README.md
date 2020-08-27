@@ -1,1 +1,1 @@
-Here is the link to the working project: https://funbox-test.netlify.app . It doesn't work in Edge for some reason. You'd better to run this app locally, through 'npm start'. Then it will be supported by all modern browsers.
+Link to the site: http://unl.surge.sh

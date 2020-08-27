@@ -1,0 +1,25 @@
+// include another .scss file from a sub-directory
+@import 'utils/mixins.scss';
+@import 'utils/variables.scss';
+@import 'utils/reusable-styles.scss';
+@import './components/header.scss';
+@import './components/main-screen.scss';
+@import './components/portfolio.scss';
+@import './components/contact.scss';
+@import './components/footer.scss';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.wrapper {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,101 @@
+.footer {
+    padding: 40px;
+    @include flex(column, flex-start, center);
+    background: $steel;
+
+    .footer__title {
+        font-size: $fz-text;
+        color: #fff;
+    }
+    .footer__text {
+        font-size: $fz-section-title;
+        color: $pink;
+        font-weight: bold;
+    }
+    .menu_footer {
+        .menu__list {
+            list-style: none;
+
+            .menu__item {
+                text-align: center;
+                padding: 4px 0;
+
+                .menu__link {
+                    text-decoration: none;
+                    text-transform: none;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .footer__rights {
+        font-size: $fz-text;
+        color: #fff;
+        padding: 20px 0;
+    }
+    .socials {
+        width: 180px;
+        @include flex(row, space-between, center);
+
+        .socials__link {
+            height: 30px;
+            width: 30px;
+            @include flex(row, center, center);
+
+            .socials__logo {
+                height: 30px;
+            }
+        }
+    }
+    
+}
+
+@media (min-width: 768px) {
+    .footer {
+        padding: 3vw;
+    
+        .footer__title {
+            font-size: $fz-text-vw;
+        }
+        .footer__text {
+            font-size: $fz-section-title-vw;
+        }
+        .menu_footer {
+            padding: 1vw 0;
+            .menu__list {
+                list-style: none;
+                @include flex(row, space-between, center);
+                width: auto;
+
+                .menu__item {
+                    text-align: center;
+                    padding: 0 1vw;
+
+                    .menu__link {
+                        text-decoration: none;
+                        font-size: $fz-text-vw;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .footer__rights {
+            font-size: $fz-text-vw;
+            padding: 2.6vw 0;
+        }
+        .socials {
+            width: 13.6vw;
+            @include flex(row, space-between, center);
+    
+            .socials__link {
+                height: 2vw;
+                width: 2vw;
+    
+                .socials__logo {
+                    height: 2vw;
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,145 @@
+.main-screen {
+    padding: 90px 20px;
+
+    .main-screen__text {
+        @include flex(column, flex-start, center);
+        .main-screen__title {
+            font-weight: bold;
+            font-size: $fz-main;
+            text-align: center;
+            color: $steel;
+    
+        }
+        .main-screen__desc {
+            font-size: $fz-text;
+            text-align: center;
+            margin-top: 20px;
+
+        }
+        .main-screen__links {
+            width: 100%;
+            @include flex(row, space-around, center);
+            margin-top: 30px;
+
+            .main-screen__about {
+                @include flex(row, center, center);
+                height: 40px;
+                width: 140px;
+                text-align: center;
+                background: $pink;
+                color: #fff;
+                border: 0;
+                border-radius: 20px;
+                font-size: $fz-text;
+                text-transform: capitalize;
+                text-decoration: none;
+            }
+            .main-screen__connect {
+                font-weight: bold;
+                color: $steel;
+                text-transform: capitalize;
+                text-decoration: none;
+            }
+        }
+    }
+    
+    .slide-screen {
+        @include flex(row, center, center);
+        position: relative;
+        .slides {
+            width: 280px;
+            padding: 30px 0;
+            order: 2;
+            .slides__pic {
+                position: relative;
+                width: 280px;
+                z-index: -1;
+            }
+            .mobile-hidden {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .main-screen {
+        padding-top: 12.5vw;
+        padding-left: 19.8vw;
+        padding-right: 6.4vw;
+        @include flex(row, space-between, center);
+
+        .main-screen__text {
+            width: 28.6vw;
+            @include flex(column, flex-start, flex-start);
+            .main-screen__title {
+                font-size: $fz-main-vw;
+                text-align: left;
+                letter-spacing: 0.2vw;
+            }
+            .main-screen__desc {
+                font-size: $fz-text-vw;
+                text-align: left;
+            }
+            .main-screen__links {
+                @include flex(row, flex-start, center);
+                margin-top: 1vw;
+                .main-screen__about {
+                    height: 3.1vw;
+                    width: 10.4vw;
+                    margin-top: 0;
+                    border-radius: 1.5vw;
+                    font-size: $fz-text-vw;
+                    text-decoration: none;
+                }
+                .main-screen__connect {
+                    font-size: $fz-text-vw;
+                    color: $steel;
+                    margin-left: 1vw;   
+                }
+            }
+            
+        }
+        
+        .slide-screen {
+            position: relative;
+            @include flex(row, flex-start, center);
+            width: 35vw;
+            height: 37vw;
+            overflow: hidden;
+            .slides__button {
+                position: absolute;
+                top: 50%;
+                display: block;
+                transform: translateY(-50%);
+                border: 0;
+                background: transparent;
+                font-size: 4vw;
+                z-index: 1;
+            }
+            .slides__button_prev {
+                left: 0;
+            }
+            .slides__button_next {
+                right: 0;
+            }
+            .slides {
+                position: absolute;
+                top: 0;
+                left: 0;
+                @include flex(row, flex-start, center);
+                
+                .slides__pic {
+                    width: 35vw;
+                    height: 37vw;
+                    padding: 30px 0;
+                    order: 2;
+                }
+                .mobile-hidden {
+                    display: block;
+                }
+            }
+            
+        }
+    }
+}
