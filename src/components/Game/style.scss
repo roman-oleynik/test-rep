@@ -1,0 +1,92 @@
+$border-color: black;
+
+@mixin grid($template: 1fr/1fr) {
+    display: grid;
+    grid-template: $template;
+}
+
+.game {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    @include grid(100px 160px/160px 200px);
+    .game__title {
+        font-size: 30px;
+        grid-area: 1/1/2/3;
+        text-align: center;
+    }
+    .game__field {
+        @include grid(repeat(2, 80px)/repeat(2, 80px));
+        border-radius: 50%;
+        box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+        background: url(../../assets/img/benjamin.jpeg) no-repeat center top / cover;
+
+        .game__button {
+            height: 80px;
+            width: 80px;
+            border: 0;
+            outline: none;
+            opacity: 0.6;
+            transition: opacity 0.25s;
+        }
+        .game__button_blue {
+            background: lightseagreen;
+            border-top-left-radius: 100%;
+        }
+        .game__button_blue:hover {
+            border-top: 2px solid $border-color;
+            border-left: 2px solid $border-color;
+        }
+        .game__button:active {
+            opacity: 0.85;
+        }
+        .highlighted {
+            opacity: 0.85;
+            transition: opacity 0.15s;
+        }
+        .game__button_red {
+            background: lightcoral;
+            border-top-right-radius: 100%;
+        }
+        .game__button_red:hover {
+            border-top: 2px solid $border-color;
+            border-right: 2px solid $border-color;
+        }
+        .game__button_yellow {
+            background: peru;
+            border-bottom-left-radius: 100%;
+        }
+        .game__button_yellow:hover {
+            border-bottom: 2px solid $border-color;
+            border-left: 2px solid $border-color;
+        }
+        .game__button_green {
+            background: lightgreen;
+            border-bottom-right-radius: 100%;
+        }
+        .game__button_green:hover {
+            border-bottom: 2px solid $border-color;
+            border-right: 2px solid $border-color;
+        }
+    }
+    .game__interface {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 50px;
+
+        .game__round {
+            font-weight: bold;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .speed-choise-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .game__loser-message {
+            margin-bottom: 0;
+        }
+    }
+}
