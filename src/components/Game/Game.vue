@@ -102,72 +102,79 @@ export default {
       highlights: [],
       round: 0,
       indexOfHighlightedSector: 0,
-      clicksAtRound: 0,
+      clickedSectorsAtRound: 0,
       isGameOver: false,
     };
   },
   methods: {
-    // Main methods --------------------------------------------
+    // Game processes ------------------------------------------
     beginGame() {
-      this.resetNumberOfRound();
-      this.setIsGameOver(false);
-      this.initNumberOfRound();
-      this.initHighlightsModel();
-      this.initSpeedRegulationInputs(this.getSpeedRegulationInputs());
+      const speedInputRefs = this.getSpeedRegulationInputs();
+      this.round = 0;
+      this.isGameOver = false;
+      this.round += 1;
+      this.clearHighlightsModel();
+      this.initSpeedRegulationInputs(speedInputRefs);
       this.runHighlighting();
     },
     runHighlighting() {
+      const delayBeforeHighlighting = 500;
       setTimeout(() => {
         this.highlights.forEach((element, index) => {
           setTimeout(() => {
-            this.playSound(this.$refs[`sound-${element.color}`]);
-            this.highlightAndFadeoutSector(index);
+            this.wrapFunctionBySound(
+              this.$refs[`sound-${element.color}`],
+              () => this.highlightAndFadeoutSector(index),
+            );
           }, this.intervalOfHighlights * index);
         });
-      }, 500);
+      }, delayBeforeHighlighting);
+    },
+    highlightAndFadeoutSector(indexOfSector) {
+      this.highlightSector(indexOfSector);
+      setTimeout(() => {
+        this.stopToHighlightSector(indexOfSector);
+        this.enableSectorsAtLastHighlight(indexOfSector);
+      }, 300);
+    },
+    highlightSector(indexOfSector) {
+      this.indexOfHighlightedSector = indexOfSector;
+      if (this.highlights[indexOfSector]) {
+        this.highlights[indexOfSector].isHighlighted = true;
+      }
+    },
+    stopToHighlightSector(indexOfSector) {
+      if (this.highlights[indexOfSector]) {
+        this.highlights[indexOfSector].isHighlighted = false;
+      }
     },
     startNextRound() {
-      this.resetClicksAtRound();
+      this.clickedSectorsAtRound = 0;
       this.addHighlightToModel();
-      this.incrementNumberOfRound();
+      this.round += 1;
       this.removeClickListenersFromSectors();
       this.runHighlighting();
     },
     onSectorPressed(color) {
-      this.stopSound(this.$refs[`sound-${color}`]);
-      this.playSound(this.$refs[`sound-${color}`]);
       if (this.isPressedCorrectly(color)) {
-        this.incrementClicksAtRound();
+        this.clickedSectorsAtRound += 1;
         if (this.isRoundPassedWell()) {
           this.startNextRound();
         }
       } else {
-        this.setIsGameOver(true);
-        this.resetGameParameters();
+        this.isGameOver = true;
+        this.clickedSectorsAtRound = 0;
         this.removeClickListenersFromSectors();
       }
     },
-    isSectorHighlighted(color) {
-      const { highlights, indexOfHighlightedSector } = this;
-      try {
-        return highlights.length > 0
-        && highlights[indexOfHighlightedSector].color === color
-        && highlights[indexOfHighlightedSector].isHighlighted;
-      } catch {
-        return false; // debug if there will be a minute tomorrow
-      }
+    isPressedCorrectly(color) {
+      return color === this.highlights[this.clickedSectorsAtRound].color;
+    },
+    isRoundPassedWell() {
+      return this.clickedSectorsAtRound === this.highlights.length;
     },
     // Auxiliary methods ------------------------------------------
-    setIsGameOver(value) {
-      this.isGameOver = value;
-    },
-    playSound(sound) {
-      sound.play();
-    },
-    stopSound(sound) {
-      sound.pause(); // eslint-disable-next-line
-      sound.currentTime = 0;
-    },
+    // intervalOfHighlights interface
     initSpeedRegulationInputs(inputs) {
       inputs.forEach((input) => {
         if (input.checked) {
@@ -182,15 +189,7 @@ export default {
         this.$refs.high,
       ];
     },
-    isPressedCorrectly(color) {
-      return color === this.highlights[this.clicksAtRound].color;
-    },
-    isRoundPassedWell() {
-      return this.clicksAtRound === this.highlights.length;
-    },
-    getRandomColor() {
-      return colors[Math.floor(Math.random() * 4)];
-    },
+    // Highlights model
     clearHighlightsModel() {
       this.highlights = [
         {
@@ -199,11 +198,8 @@ export default {
         },
       ];
     },
-    incrementClicksAtRound() {
-      this.clicksAtRound += 1;
-    },
-    resetClicksAtRound() {
-      this.clicksAtRound = 0;
+    getRandomColor() {
+      return colors[Math.floor(Math.random() * 4)];
     },
     addHighlightToModel() {
       this.highlights.push(
@@ -213,28 +209,26 @@ export default {
         },
       );
     },
-    resetNumberOfRound() {
-      this.round = 0;
+    // Sounds interface
+    wrapFunctionBySound(sound, func) {
+      this.stopSound(sound);
+      sound.play();
+      func();
     },
-    incrementNumberOfRound() {
-      this.round += 1;
+    stopSound(sound) {
+      sound.pause(); // eslint-disable-next-line
+      sound.currentTime = 0;
     },
-    initNumberOfRound() {
-      this.resetNumberOfRound();
-      this.incrementNumberOfRound();
-    },
-    initHighlightsModel() {
-      this.clearHighlightsModel();
-      // this.addHighlightToModel();
-    },
-    resetGameParameters() {
-      this.resetClicksAtRound();
-      this.clearHighlightsModel();
-    },
+    // Event listeners adding
     addClickListenersToSectors() {
       colors.forEach((color) => {
-        this.$refs[color].onclick = () => {
-          this.onSectorPressed(color);
+        const sector = this.$refs[color];
+        sector.onclick = () => {
+          const soundOfSector = this.$refs[`sound-${color}`];
+          this.wrapFunctionBySound(
+            soundOfSector,
+            () => this.onSectorPressed(color),
+          );
         };
       });
     },
@@ -243,34 +237,22 @@ export default {
         this.$refs[color].onclick = null;
       });
     },
-    setIndexOfHighlightedSector(value) {
-      this.indexOfHighlightedSector = value;
-    },
-    highlightSector(indexOfHighlightedSector) {
-      this.setIndexOfHighlightedSector(indexOfHighlightedSector);
-      if (this.highlights.length) {
-        this.highlights[indexOfHighlightedSector].isHighlighted = true;
-      }
-    },
-    stopToHighlightSector(indexOfHighlightedSector) {
-      if (this.highlights) {
-        this.highlights[indexOfHighlightedSector].isHighlighted = false;
-      }
-    },
     enableSectorsAtLastHighlight(index) {
       if (index === this.highlights.length - 1) {
         this.addClickListenersToSectors();
       }
     },
-    makeDelayBeforeFadeout(func) {
-      setTimeout(func, 300);
-    },
-    highlightAndFadeoutSector(indexOfSector) {
-      this.highlightSector(indexOfSector);
-      this.makeDelayBeforeFadeout(() => {
-        this.stopToHighlightSector(indexOfSector);
-        this.enableSectorsAtLastHighlight(indexOfSector);
-      });
+    // The DOM-element of the sector checks by such way
+    // when it is needed to add the 'highlighted' CSS-class.
+    isSectorHighlighted(color) {
+      const { highlights, indexOfHighlightedSector } = this;
+      try {
+        return highlights.length > 0
+        && highlights[indexOfHighlightedSector].color === color
+        && highlights[indexOfHighlightedSector].isHighlighted;
+      } catch {
+        return false;
+      }
     },
   },
 };
