@@ -6,7 +6,7 @@
         <ul class="form__grid form__grid_essential-info">
           <li class="form__surname">
             <label class="form__field">
-              Фамилия:
+              <span>Фамилия<span class="red">*</span>:</span>
               <input
                 type="text"
                 v-model.trim="$v.form.surname.$model"
@@ -17,12 +17,12 @@
               v-if="$v.form.surname.$error"
               class="error-text"
             >
-              This field should be filled in.
+              Это поле должно быть заполнено!
             </p>
           </li>
           <li class="form__name">
             <label class="form__field">
-              Имя:
+              <span>Имя<span class="red">*</span>:</span>
               <input
                 type="text"
                 v-model.trim="$v.form.name.$model"
@@ -33,7 +33,7 @@
               v-if="$v.form.name.$error"
               class="error-text"
             >
-              This field should be filled in.
+              Это поле должно быть заполнено!
             </p>
           </li>
           <li class="form__patronym">
@@ -47,7 +47,7 @@
           </li>
           <li class="form__dateOfBirth">
             <label class="form__field">
-              Дата рождения:
+              <span>Дата рождения<span class="red">*</span>:</span>
               <input
                 type="date"
                 v-model.trim="$v.form.dateOfBirth.$model"
@@ -58,12 +58,12 @@
               v-if="$v.form.dateOfBirth.$error"
               class="error-text"
             >
-              This field should be filled in.
+              Это поле должно быть заполнено!
             </p>
           </li>
           <li class="form__phoneNumber">
             <label class="form__field">
-              Номер телефона:
+              <span>Номер телефона<span class="red">*</span>:</span>
               <input
                 type="tel"
                 v-model.trim="$v.form.phoneNumber.$model"
@@ -92,7 +92,7 @@
           </li>
           <li class="form__clientsGroup">
             <label class="form__field">
-              Группа клиентов:
+              <span>Группа клиентов<span class="red">*</span>:</span>
               <select
                 multiple
                 size="2"
@@ -179,7 +179,7 @@
           </li>
           <li class="form__field_city">
             <label class="form__field">
-              Город:
+              <span>Город<span class="red">*</span>:</span>
               <input
                 type="text"
                 placeholder="С большой буквы"
@@ -225,7 +225,7 @@
         <ul class="form__grid form__grid_passport-data">
           <li class="form__field_documentType">
             <label class="form__field">
-              Тип документа:
+              <span>Тип документа<span class="red">*</span>:</span>
               <select
                 v-model="$v.form.documentType.$model"
                 :class="{'error-input': $v.form.documentType.$error}"
@@ -295,7 +295,7 @@
           </li>
           <li class="form__field_dateOfIssue">
             <label class="form__field">
-              Дата выдачи документа:
+              <span>Дата выдачи документа<span class="red">*</span>:</span>
               <input
                 type="date"
                 v-model="$v.form.dateOfIssue.$model"
@@ -311,6 +311,19 @@
           </li>
         </ul>
       </fieldset>
+      <p
+        v-if="isFormValidOnSubmit === true"
+        class="success-text align-center"
+      >
+        Уважаемый {{form.name}},
+        форма отправлена успешно!
+      </p>
+      <p
+        v-if="isFormValidOnSubmit === false"
+        class="error-text_large align-center"
+      >
+        Заполните все поля!
+      </p>
       <input
         type="submit"
         value="Отправить"
@@ -354,6 +367,7 @@ export default {
         authority: '',
         dateOfIssue: '',
       },
+      isFormValidOnSubmit: null,
     };
   },
   validations: {
@@ -390,15 +404,12 @@ export default {
     },
   },
   methods: {
-    log(message) {
-      console.log(message);
-    },
     onSubmit(event) {
       event.preventDefault();
       if (this.$v.$invalid) {
-        alert('This form is invalid');
+        this.isFormValidOnSubmit = false;
       } else {
-        alert('This form is valid');
+        this.isFormValidOnSubmit = true;
       }
     },
     isPassportSeriesValidFor(codeOfCountry, template) {
