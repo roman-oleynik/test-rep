@@ -52,7 +52,7 @@ function locationResponsesReducer(state: LocationResponse[] = [], action: Action
 function chosenLocationResponseReducer (state: LocationResponse = {} as LocationResponse, action: Action) {
     switch(action.type) {
         case SET_CHOSEN_LOCATION_RESPONSE:
-            return state;
+            return {...action.body};
         default:
             return state;
     }

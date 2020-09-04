@@ -14,6 +14,7 @@ export default {
           History: {
             screens: {
               HistoryTabScreen: 'history',
+              ChosenLocationResponse: 'chosenLocation',
             },
           },
           Map: {

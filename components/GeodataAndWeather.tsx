@@ -21,10 +21,10 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
     const reverseGeocodingResponse = await axios.get(reverseGeocodingAPI);
     const locationData = reverseGeocodingResponse.data;
     setReverseGeocodingData(locationData);
-    const weatherResponse = await axios.get(weatherAPI);
-    const weatherData = weatherResponse.data;
-    console.log(weatherData.data[0]);
-    setWeather(weatherData.data[0]);
+    // const weatherResponse = await axios.get(weatherAPI);
+    // const weatherData = weatherResponse.data;
+    // console.log(weatherData.data[0]);
+    // setWeather(weatherData.data[0]);
 
     const clientPayload = {
       id: generateId(),
@@ -51,7 +51,7 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
       const weatherAPI = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=4753c247db0043ffaae3452cd9c5ed3f`;
       makeAPICalls(reverseGeocodingAPI, weatherAPI);
     }
-  }, [latitude, longitude]);
+  }, []);
 	return <View>
       {
         latitude && longitude

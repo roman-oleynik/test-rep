@@ -15,6 +15,7 @@ export type MainTabParamList = {
 
 export type HistoryTabParamList = {
   HistoryTabScreen: undefined;
+  ChosenLocationResponse: undefined,
 };
 
 export type MapTabParamList = {

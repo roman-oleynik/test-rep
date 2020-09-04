@@ -1,22 +1,39 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import EditScreenInfo from '../components/LocationResponses';
-import { FlatList } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { useSelector, useDispatch } from 'react-redux';
 import { State, LocationResponse } from '../types/types';
+import { setChosenLocationResponse } from '../redux/actions/actions';
 
-export default function HistoryTabScreen() {
+type Props = {
+  navigation: any
+}
+
+export default function HistoryTabScreen({navigation}: Props) {
+  const dispatch = useDispatch();
   const locationResponses = useSelector((state: State) => state.locationResponses);
-  console.log(locationResponses);
+
+  const onLocationResponsePress = (locationResponse: LocationResponse) => {
+    dispatch(setChosenLocationResponse(locationResponse));
+    navigation.navigate("ChosenLocationResponse");
+  };
+
   return (
     <ScrollView style={styles.container}>
       {
         locationResponses.length > 0 &&
         locationResponses.map((el: LocationResponse) => {
-          return <View key={el.id}>
-            <Text>{el.location}</Text>
-          </View>
+          return <TouchableOpacity
+            key={el.id}
+            onPress={() => onLocationResponsePress(el)}>
+            <View>
+              <Text>
+                {el.location}
+              </Text>
+            </View>
+          </TouchableOpacity>
         })
       }
     </ScrollView>

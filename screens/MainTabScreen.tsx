@@ -21,9 +21,7 @@ function useLocation() {
 	if(!navigator.geolocation) {
 		setError('Geolocation is not supported by your browser');
   }
-  setInterval(() => {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-  }, 60000);
+  navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	return {
 		latitude,
 		longitude,

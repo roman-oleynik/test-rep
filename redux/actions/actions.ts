@@ -5,7 +5,8 @@ import {
     SET_ACTIVE_USERS,
     ADD_ACTIVE_USER,
     DELETE_ACTIVE_USER,
-    ADD_LOCATION_RESPONSE
+    ADD_LOCATION_RESPONSE,
+    SET_CHOSEN_LOCATION_RESPONSE
     } from "../../types/constants";
 import { ThunkDispatch } from "redux-thunk";
 
@@ -43,6 +44,13 @@ export function deleteActiveUser(userId: string): Action {
         body: userId,
     };
 };
+
+export function setChosenLocationResponse(response: LocationResponse) {
+    return {
+        type: SET_CHOSEN_LOCATION_RESPONSE,
+        body: response,
+    };
+}
 
 export function postActiveUserToServer(user: User | null) {
     if (user) {

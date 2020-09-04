@@ -5,6 +5,7 @@ import * as React from 'react';
 import MainTabScreen from '../screens/MainTabScreen';
 import HistoryTabScreen from '../screens/HistoryTabScreen';
 import MapTabScreen from '../screens/MapTabScreen';
+import ChosenLocationResponse from '../screens/ChosenLocationResponse';
 import {
   BottomTabParamList,
   MainTabParamList,
@@ -73,7 +74,12 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="HistoryTabScreen"
         component={HistoryTabScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'History of requests' }}
+      />
+      <TabTwoStack.Screen
+        name="ChosenLocationResponse"
+        component={ChosenLocationResponse}
+        options={{ headerTitle: 'History of requests' }}
       />
     </TabTwoStack.Navigator>
   );
