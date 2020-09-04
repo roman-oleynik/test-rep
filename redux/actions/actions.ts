@@ -17,7 +17,7 @@ export function setClient(client: User | null): Action {
     };
 };
 
-export function setActiveUsers(users: User[]): Action {
+export function setActiveUsers(users: Record<string, User>): Action {
     return {
         type: SET_ACTIVE_USERS,
         body: users,

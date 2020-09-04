@@ -15,16 +15,16 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
   const dispatch = useDispatch();
   const [ reverseGeocodingData, setReverseGeocodingData ] = useState<any>({});
   const client = useSelector((state: State) => state.client);
-  const [ weather, setWeather ] = useState<any>({});
+  const [ weather, setWeather ] = useState<any>(null);
 
   async function makeAPICalls(reverseGeocodingAPI: string, weatherAPI: string) {
     const reverseGeocodingResponse = await axios.get(reverseGeocodingAPI);
     const locationData = reverseGeocodingResponse.data;
     setReverseGeocodingData(locationData);
-    // const weatherResponse = await axios.get(weatherAPI);
-    // const weatherData = weatherResponse.data;
+    const weatherResponse = await axios.get(weatherAPI);
+    const weatherData = weatherResponse.data;
     // console.log(weatherData.data[0]);
-    // setWeather(weatherData.data[0]);
+    setWeather(weatherData.data[0]);
 
     const clientPayload = {
       id: generateId(),
@@ -57,12 +57,26 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
         latitude && longitude
         ?
         <>
-          <Text>Latitude: {latitude}</Text>
-          <Text>Longitude: {longitude}</Text>
-          {
-            reverseGeocodingData.features && reverseGeocodingData.features[0]
-            && <Text>{reverseGeocodingData.features[0].place_name}</Text>
-          }
+          <View>
+            <Text>Latitude: {latitude}</Text>
+            <Text>Longitude: {longitude}</Text>
+            {
+              reverseGeocodingData.features && reverseGeocodingData.features[0]
+              && <Text>{reverseGeocodingData.features[0].place_name}</Text>
+            }
+          </View>
+          <View>
+            {
+              weather
+              ?
+              <View>
+                <Text>Temperature: {weather.app_temp}</Text>
+                <Text>Temperature: {weather.app_temp}</Text>
+              </View>
+              :
+              <Text>Weather has not loaded</Text>
+            }
+          </View>
         </>
         :
         <Text>Loading...</Text>

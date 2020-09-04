@@ -12,6 +12,8 @@ import {
   HistoryTabParamList,
   MapTabParamList 
 } from '../types';
+import { useSelector } from 'react-redux';
+import { State } from '../types/types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -60,26 +62,26 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="MainTabScreen"
         component={MainTabScreen}
-        options={{ headerTitle: 'Main' }}
+        options={{ headerTitle: 'Главная' }}
       />
     </TabOneStack.Navigator>
   );
 }
 
 const TabTwoStack = createStackNavigator<HistoryTabParamList>();
-
+const chosenLocationResponse = useSelector((state: State) => state.chosenLocationResponse);
 function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
         name="HistoryTabScreen"
         component={HistoryTabScreen}
-        options={{ headerTitle: 'History of requests' }}
+        options={{ headerTitle: 'Журнал подключений' }}
       />
       <TabTwoStack.Screen
         name="ChosenLocationResponse"
         component={ChosenLocationResponse}
-        options={{ headerTitle: 'History of requests' }}
+        options={{ headerTitle: 'Подключение' }}
       />
     </TabTwoStack.Navigator>
   );
@@ -93,7 +95,7 @@ function TabThreeNavigator() {
       <TabThreeStack.Screen
         name="MapTabScreen"
         component={MapTabScreen}
-        options={{ headerTitle: 'Tab Three Title' }}
+        options={{ headerTitle: 'Карта' }}
       />
     </TabThreeStack.Navigator>
   );

@@ -4,7 +4,6 @@ import { GeodataAndWeather } from '../components/GeodataAndWeather';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../types/types';
 import { setClient, addActiveUser, deleteActiveUserOnServer } from '../redux/actions/actions';
-import { generateId } from '../modules/generateId';
 
 function useLocation() {
 	const [latitude, setLatitude] = useState<any>(0);
@@ -40,12 +39,19 @@ export default function MainTabScreen() {
   }
   const onDisconnectPressed = () => {
     setIsGeodataHidden(true);
-    if (client.id) {
+    if (client) {
       dispatch(deleteActiveUserOnServer(client.id));
     }
   }
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Привет!</Text>
+      <Text style={styles.simpleText}>Это приложение создано для того, чтобы находить своих единомышленников и быстро консолидироваться. 
+        Так мы можем оперативно объединяться в большую толпу и противостоять нашему общему врагу (если интернет не отключат :)). Также при помощи него можно фиксировать посещаемость митингов (если все посетители его установят). 
+        Пока что это программа с примитивным интерфейсом, отображающая всех людей, кто ее использует. Однако сюда можно добавить возможность вносить отметки на карте,
+        которые показывают расположение силовиков или добавить чат, где можно обсуждать действия насчет движения к определенной локации (можно добавить специальный маркер для этого). 
+      </Text>
+      <Text style={styles.simpleText}>Подключитесь, чтобы работать с приложением.</Text>
       {
         !isGeodataHidden
         ?
@@ -62,7 +68,7 @@ export default function MainTabScreen() {
         <TouchableOpacity
           onPress={onConnectPressed}>
             <View style={styles.button_connect}>
-              <Text style={styles.buttonText}>Connect</Text>
+              <Text style={styles.buttonText}>Подключиться</Text>
             </View>
         </TouchableOpacity>
       }
@@ -79,6 +85,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  simpleText: {
+    fontSize: 14,
+    textAlign: 'center',
   },
   separator: {
     marginVertical: 30,

@@ -12,12 +12,12 @@ import {
 import { combineReducers } from 'redux';
 
 
-function clientReducer(state: User = {} as User, action: Action) {
+function clientReducer(state: User | null = null, action: Action) {
     switch(action.type) {
         case SET_CLIENT:
             return {...action.body};
         case DELETE_ACTIVE_USER:
-            return {};
+            return null;
         default:
             return state;
     }
@@ -26,7 +26,11 @@ function clientReducer(state: User = {} as User, action: Action) {
 function activeUsersReducer(state: User[] = [], action: Action) {
     switch(action.type) {
         case SET_ACTIVE_USERS:
-            return [...action.body];
+            const arrayOfUsers = [];
+            for (let key in action.body) {
+                arrayOfUsers.push(action.body[key]);
+            }
+            return arrayOfUsers;
         case ADD_ACTIVE_USER:
             return [...state, action.body];
         case DELETE_ACTIVE_USER:

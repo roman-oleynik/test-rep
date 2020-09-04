@@ -1,3 +1,5 @@
+import { LocationResponse } from "./types/types";
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
