@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { GeodataAndWeather } from '../components/GeodataAndWeather';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../types/types';
 import { setClient, addActiveUser, deleteActiveUserOnServer } from '../redux/actions/actions';
+import { logo } from '../assets/images/logo.png';
 
 function useLocation() {
 	const [latitude, setLatitude] = useState<any>(0);
@@ -45,13 +46,6 @@ export default function MainTabScreen() {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Привет!</Text>
-      <Text style={styles.simpleText}>Это приложение создано для того, чтобы находить своих единомышленников и быстро консолидироваться. 
-        Так мы можем оперативно объединяться в большую толпу и противостоять нашему общему врагу (если интернет не отключат :)). Также при помощи него можно фиксировать посещаемость митингов (если все посетители его установят). 
-        Пока что это программа с примитивным интерфейсом, отображающая всех людей, кто ее использует. Однако сюда можно добавить возможность вносить отметки на карте,
-        которые показывают расположение силовиков или добавить чат, где можно обсуждать действия насчет движения к определенной локации (можно добавить специальный маркер для этого). 
-      </Text>
-      <Text style={styles.simpleText}>Подключитесь, чтобы работать с приложением.</Text>
       {
         !isGeodataHidden
         ?
@@ -60,17 +54,26 @@ export default function MainTabScreen() {
           <TouchableOpacity
             onPress={onDisconnectPressed}>
               <View style={styles.button_disconnect}>
-                <Text style={styles.buttonText}>Disconnect</Text>
+                <Text style={styles.buttonText}>Отключиться</Text>
               </View>
           </TouchableOpacity>
         </>
         :
-        <TouchableOpacity
-          onPress={onConnectPressed}>
-            <View style={styles.button_connect}>
-              <Text style={styles.buttonText}>Подключиться</Text>
-            </View>
-        </TouchableOpacity>
+        <View style={styles.container}>
+          <Image
+            source={require('../assets/images/logo.png')}
+            style={styles.logo}
+          />
+          <Text style={styles.title}>Привет!</Text>
+          <Text style={styles.simpleText}>Сейчас я помогу тебе найти единомышленников.</Text>
+          <TouchableOpacity
+            onPress={onConnectPressed}>
+              <View style={styles.button_connect}>
+                <Text style={styles.buttonText}>Жми сюда</Text>
+              </View>
+          </TouchableOpacity>
+        </View>
+        
       }
     </View>
   );
@@ -85,10 +88,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    lineHeight: 40,
   },
   simpleText: {
     fontSize: 14,
     textAlign: 'center',
+    lineHeight: 30,
   },
   separator: {
     marginVertical: 30,
@@ -111,5 +116,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 20,
     color: 'white'
+  },
+  logo: {
+    height: 200,
+    width: 200
   }
 });

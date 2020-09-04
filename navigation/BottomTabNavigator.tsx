@@ -69,7 +69,6 @@ function TabOneNavigator() {
 }
 
 const TabTwoStack = createStackNavigator<HistoryTabParamList>();
-const chosenLocationResponse = useSelector((state: State) => state.chosenLocationResponse);
 function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>

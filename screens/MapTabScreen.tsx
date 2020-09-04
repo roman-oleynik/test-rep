@@ -21,32 +21,32 @@ export default function MapTabScreen() {
   return (
     <View>
       {
-        client
-        ?
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: client.latitude,
-            longitude: client.longitude,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121
-          }}
-        >
-          {
-            activeUsers.length > 0 &&
-            activeUsers.map(el => {
-              return <Marker
-                key={el.id}
-                coordinate={{
-                  latitude: el.latitude,
-                  longitude: el.longitude,
-                }}
-              />
-            })
-          }
-        </MapView>
-        :
-        <Text>Подключитесь, чтобы увидеть карту.</Text>
+        // client
+        // ?
+        // <MapView
+        //   style={styles.map}
+        //   region={{
+        //     latitude: client.latitude,
+        //     longitude: client.longitude,
+        //     latitudeDelta: 0.015,
+        //     longitudeDelta: 0.0121
+        //   }}
+        // >
+        //   {
+        //     activeUsers.length > 0 &&
+        //     activeUsers.map(el => {
+        //       return <Marker
+        //         key={el.id}
+        //         coordinate={{
+        //           latitude: el.latitude,
+        //           longitude: el.longitude,
+        //         }}
+        //       />
+        //     })
+        //   }
+        // </MapView>
+        // :
+        // <Text>Подключитесь, чтобы увидеть карту.</Text>
       }
       
     </View>
