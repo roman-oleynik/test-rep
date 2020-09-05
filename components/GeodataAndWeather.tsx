@@ -105,10 +105,8 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
         ?
         <View>
           <Text style={styles.subtitle}>Координаты:</Text>
-          <View style={styles.flexRow}>
-            <Text>Широта: {latitude.toFixed(4)}</Text>
-            <Text>Долгота: {longitude.toFixed(4)}</Text>
-          </View>
+          <Text>Широта: {latitude.toFixed(4)}</Text>
+          <Text>Долгота: {longitude.toFixed(4)}</Text>
           <View style={styles.separator}>
             <Text style={styles.title}>Отлично!</Text>
             <View>
@@ -144,12 +142,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  flexRow: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   title: {
     fontSize: 24,
