@@ -3,17 +3,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import MainTabScreen from '../screens/MainTabScreen/MainTabScreen';
-import HistoryTabScreen from '../screens/HistoryTabScreen';
-import MapTabScreen from '../screens/MapTabScreen';
-import ChosenLocationResponse from '../screens/ChosenLocationResponse';
+import HistoryTabScreen from '../screens/HistoryTabScreen/HistoryTabScreen';
+import MapTabScreen from '../screens/MapTabScreen/MapTabScreen';
+import ChosenLocationResponse from '../screens/ChosenLocationResponse/ChosenLocationResponse';
 import {
   BottomTabParamList,
   MainTabParamList,
   HistoryTabParamList,
   MapTabParamList 
 } from '../types';
-import { useSelector } from 'react-redux';
-import { State } from '../types/types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 

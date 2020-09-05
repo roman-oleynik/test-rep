@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../types/types';
-import { fetchActiveUsersFromServer } from '../redux/actions/actions';
-
-const height = Dimensions.get('window').height;
+import { State } from '../../types/types';
+import { fetchActiveUsersFromServer } from '../../redux/actions/actions';
+import { styles } from './styles';
 
 export default function MapTabScreen() {
   const dispatch = useDispatch();
@@ -14,7 +13,6 @@ export default function MapTabScreen() {
 
   useEffect(() => {
     dispatch(fetchActiveUsersFromServer());
-    console.log(client);
   }, [client]);
   return (
     <View>
@@ -51,28 +49,3 @@ export default function MapTabScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 300,
-    width: 300
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-  map: {
-    height
-  },
-  singleTextView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 20,
-  }
-});
