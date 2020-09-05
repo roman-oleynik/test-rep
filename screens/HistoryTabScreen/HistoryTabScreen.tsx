@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
-import { State, LocationResponse } from '../../types/types';
+import { State, LocationResponse } from '../../types/appDataTypes';
 import { setChosenLocationResponse } from '../../redux/actions/actions';
 import { styles } from './styles';
 import { LocationResponseLink } from '../../components/LocationResponseLink/LocationResponseLink';

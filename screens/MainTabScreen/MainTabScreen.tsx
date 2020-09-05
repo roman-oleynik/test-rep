@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { GeodataAndWeather } from '../../components/GeodataAndWeather/GeodataAndWeather';
 import { useSelector, useDispatch } from 'react-redux';
-import { State, User } from '../../types/types';
-import { setClient, addActiveUser, deleteActiveUserOnServer } from '../../redux/actions/actions';
+import { State, User } from '../../types/appDataTypes';
+import { deleteActiveUserOnServer } from '../../redux/actions/actions';
 import { styles } from './styles';
 import { AppTitleContent } from '../../components/AppTitleContent/AppTitleContent';
 import { useGeolocation } from '../../hooks/useGeolocation';

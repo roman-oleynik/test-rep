@@ -1,4 +1,4 @@
-import { LocationResponse } from "./types/types";
+import { LocationResponse } from "./appDataTypes";
 
 export type RootStackParamList = {
   Root: undefined;

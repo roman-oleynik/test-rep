@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { generateId } from '../../modules/generateId';
 import { postActiveUserToServer, addLocationResponse } from '../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
-import { LocationResponseArguments, User, UserArguments } from '../../types/types';
+import { LocationResponseArguments, User, UserArguments } from '../../types/appDataTypes';
 import { styles } from './styles';
 import { useWeatherAPI } from '../../hooks/useWeatherAPI';
 import { useReverseGeocodingAPI } from '../../hooks/useReverseGeocodingAPI';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { LocationResponse } from '../../types/types';
+import { LocationResponse } from '../../types/appDataTypes';
 import { styles } from './styles';
 
 type Props = {

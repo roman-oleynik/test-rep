@@ -11,7 +11,7 @@ import {
   MainTabParamList,
   HistoryTabParamList,
   MapTabParamList 
-} from '../types';
+} from '../types/navigatorTypes';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 

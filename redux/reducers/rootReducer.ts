@@ -1,4 +1,4 @@
-import { Action, State, User, LocationResponse } from '../../types/types';
+import { Action, State, User, LocationResponse } from '../../types/appDataTypes';
 import {
     SET_CLIENT,
     SET_ACTIVE_USERS,

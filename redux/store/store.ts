@@ -3,9 +3,9 @@ import {createLogger} from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import {createStore, applyMiddleware} from 'redux';
 
-const loggerMiddleware = createLogger();
+// const loggerMiddleware = createLogger();
 
 export const store = createStore(
 	rootReducer,
-	applyMiddleware(thunkMiddleware, loggerMiddleware),
+	applyMiddleware(thunkMiddleware),
 );

@@ -1,4 +1,4 @@
-import { LocationResponse, LocationResponseArguments, User, UserArguments } from '../types/types';
+import { LocationResponse, LocationResponseArguments, User, UserArguments } from '../types/appDataTypes';
 
 export function createLocationResponsePayload(...args: LocationResponseArguments): LocationResponse {
     const [ id, latitude, longitude, location, temperature, weatherDesc, wind ] = args;

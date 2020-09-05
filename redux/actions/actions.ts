@@ -1,4 +1,4 @@
-import { User, Action, LocationResponse } from "../../types/types";
+import { User, Action, LocationResponse } from "../../types/appDataTypes";
 import axios from 'axios';
 import { 
     SET_CLIENT,

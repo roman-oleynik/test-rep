@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { State } from '../../types/types';
+import { State } from '../../types/appDataTypes';
 import { Coords } from '../../components/Coords/Coords';
 import { Weather } from '../../components/Weather/Weather';
 import { Address } from '../../components/Address/Address';
