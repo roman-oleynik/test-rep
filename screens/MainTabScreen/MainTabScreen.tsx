@@ -6,36 +6,14 @@ import { State, User } from '../../types/types';
 import { setClient, addActiveUser, deleteActiveUserOnServer } from '../../redux/actions/actions';
 import { styles } from './styles';
 import { AppTitleContent } from '../../components/AppTitleContent/AppTitleContent';
+import { useGeolocation } from '../../hooks/useGeolocation';
 
-
-function useLocation() {
-	const [latitude, setLatitude] = useState<any>(0);
-	const [longitude, setLongitude] = useState<any>(0);
-  const [error, setError] = useState<any>("");
-
-	function onSuccess(position: any) {
-		setLatitude(position.coords.latitude);
-		setLongitude(position.coords.longitude);
-	}
-	function onError() {
-		setError('Unable to retrieve your location');
-	}
-	if(!navigator.geolocation) {
-		setError('Geolocation is not supported by your browser');
-  }
-  navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	return {
-		latitude,
-		longitude,
-		error,
-	};
-}
 
 export default function MainTabScreen() {
   const dispatch = useDispatch();
   const client = useSelector((state: State) => state.client);
 
-  const { latitude, longitude } = useLocation();
+  const { latitude, longitude } = useGeolocation();
 
   const [ isGeodataHidden, setIsGeodataHidden ] = useState(true);
   const [ isDisconnectButtonDisabled, setIsDisconnectButtonDisabled ] = useState(false);
