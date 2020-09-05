@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { GeodataAndWeather } from '../components/GeodataAndWeather';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../types/types';
+import { State, User } from '../types/types';
 import { setClient, addActiveUser, deleteActiveUserOnServer } from '../redux/actions/actions';
+import LocationResponses from '../components/LocationResponses';
 
 
 function useLocation() {
@@ -33,27 +34,44 @@ export default function MainTabScreen() {
   const dispatch = useDispatch();
   const { latitude, longitude } = useLocation();
   const [ isGeodataHidden, setIsGeodataHidden ] = useState(true);
+  const [ isConnectButtonDisabled, setIsConnectButtonDisabled ] = useState(false);
+  const [ isDisconnectButtonDisabled, setIsDisconnectButtonDisabled ] = useState(false);
   const client = useSelector((state: State) => state.client);
   
   const onConnectPressed = () => {
     setIsGeodataHidden(false);
+    setIsDisconnectButtonDisabled(true);
   }
   const onDisconnectPressed = () => {
-    setIsGeodataHidden(true);
+    setIsDisconnectButtonDisabled(true);
     if (client) {
       dispatch(deleteActiveUserOnServer(client.id));
     }
-  }
+  };
+  const manageViewOnClientChange = (client: User) => {
+    if (client) {
+      setIsDisconnectButtonDisabled(false);
+    } else {
+      setIsGeodataHidden(true);
+    }
+  };
+  useEffect(() => {
+    manageViewOnClientChange(client);
+  }, [client]);
   return (
     <View style={styles.container}>
       {
         !isGeodataHidden
         ?
         <>
-          <GeodataAndWeather latitude={latitude} longitude={longitude} />
+          <GeodataAndWeather
+            latitude={latitude}
+            longitude={longitude}
+          />
           <TouchableOpacity
+            disabled={isDisconnectButtonDisabled}
             onPress={onDisconnectPressed}>
-              <View style={styles.button_disconnect}>
+              <View style={isDisconnectButtonDisabled ? styles.buttonDisabled : styles.button_disconnect}>
                 <Text style={styles.buttonText}>Отключиться</Text>
               </View>
           </TouchableOpacity>
@@ -67,8 +85,9 @@ export default function MainTabScreen() {
           <Text style={styles.title}>Привет!</Text>
           <Text style={styles.simpleText}>Сейчас я помогу тебе найти единомышленников.</Text>
           <TouchableOpacity
+            disabled={isConnectButtonDisabled}
             onPress={onConnectPressed}>
-              <View style={styles.button_connect}>
+              <View style={isConnectButtonDisabled ? styles.buttonDisabled : styles.button_connect}>
                 <Text style={styles.buttonText}>Жми сюда</Text>
               </View>
           </TouchableOpacity>
@@ -105,6 +124,12 @@ const styles = StyleSheet.create({
     width: 260,
     alignItems: 'center',
     backgroundColor: '#2196F3'
+  },
+  buttonDisabled: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: 'center',
+    backgroundColor: 'gray',
   },
   button_disconnect: {
     marginBottom: 30,

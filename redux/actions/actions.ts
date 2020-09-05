@@ -57,6 +57,7 @@ export function postActiveUserToServer(user: User | null) {
         return async (dispatch: ThunkDispatch<{}, {}, Action>) => {
             await axios.post("https://any-title-7a738.firebaseio.com/activeUsers.json", JSON.stringify(user));
             dispatch(addActiveUser(user));
+            dispatch(setClient(user));
         }
     }
 };
@@ -70,6 +71,7 @@ export function deleteActiveUserOnServer(id: string) {
         const keyOfUser = await _getKeyOfActiveUserToDelete(id);
         await axios.delete(`https://any-title-7a738.firebaseio.com/activeUsers/${keyOfUser}.json`);
         dispatch(deleteActiveUser(id));
+        dispatch(setClient(null));
     }
 }
 export function fetchActiveUsersFromServer() {

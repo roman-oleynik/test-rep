@@ -20,19 +20,6 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
   const client = useSelector((state: State) => state.client);
   const [ weather, setWeather ] = useState<any>(null);
 
-  function initClient(
-    id: string,
-    latitude: number,
-    longitude: number,
-  ) {
-    const payload = {
-      id,
-      latitude,
-      longitude
-    };
-    dispatch(setClient(payload));
-  };
-
   function startAddingLocationResponse(
     id: string,
     latitude: number,
@@ -79,8 +66,8 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
 
     const idOfNewClient = generateId();
     
-    initClient(idOfNewClient, latitude, longitude);
     postClientDataToServer(idOfNewClient, latitude, longitude);
+
     startAddingLocationResponse(
       idOfNewClient,
       latitude,
