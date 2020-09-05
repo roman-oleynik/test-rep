@@ -7,7 +7,6 @@ import { fetchActiveUsersFromServer } from '../../redux/actions/actions';
 import { styles } from './styles';
 
 
-
 export default function MapTabScreen() {
   const dispatch = useDispatch();
   const activeUsers = useSelector((state: State) => state.activeUsers);
