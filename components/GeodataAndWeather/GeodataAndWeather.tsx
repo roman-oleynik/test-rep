@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { generateId } from '../../modules/generateId';
 import { postActiveUserToServer, addLocationResponse } from '../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
-import { LocationResponseArguments, User, UserArguments } from '../../types/appDataTypes';
+import { LocationResponseArguments, User, UserArguments, LocationResponse } from '../../types/appDataTypes';
 import { styles } from './styles';
 import { useWeatherAPI } from '../../hooks/useWeatherAPI';
 import { useReverseGeocodingAPI } from '../../hooks/useReverseGeocodingAPI';
@@ -12,18 +12,17 @@ import { Coords } from '../Coords/Coords';
 import { Weather } from '../Weather/Weather';
 import { Address } from '../Address/Address';
 
-
 type Props = {
 	latitude: number,
-	longitude: number
+  longitude: number,
+  onError: () => void,
 };
 
 
-
-export function GeodataAndWeather({latitude, longitude}: Props) {
+export function GeodataAndWeather({latitude, longitude, onError}: Props) {
   const dispatch = useDispatch();
-  const weather = useWeatherAPI(latitude, longitude);
-  const reverseGeocodingData = useReverseGeocodingAPI(latitude, longitude);
+  const { weather, weatherError } = useWeatherAPI(latitude, longitude);
+  const { reverseGeocodingData, reverseGeocodingError } = useReverseGeocodingAPI(latitude, longitude);
   
   useEffect(() => {
     if (weather && reverseGeocodingData) {
@@ -37,8 +36,14 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
         reverseGeocodingData.features[3].place_name,
         weather.app_temp,
         weather.weather.description,
-        weather.wind_spd.toFixed(0)
+        weather.wind_spd
       );
+    } 
+    if (weatherError) {
+      onError();
+    }
+    if (reverseGeocodingError) {
+      onError();
     }
   }, [weather, reverseGeocodingData]);
 
@@ -49,7 +54,7 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
 
   function postClientDataToServer(...args: UserArguments) {
     const payload: User = createClientPayload(...args);
-    dispatch(postActiveUserToServer(payload));
+    dispatch( postActiveUserToServer(payload) );
   }
 
 	return <View style={styles.container}>

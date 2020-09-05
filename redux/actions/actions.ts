@@ -55,7 +55,10 @@ export function setChosenLocationResponse(response: LocationResponse): Action {
 export function postActiveUserToServer(user: User | null) {
     if (user) {
         return async (dispatch: ThunkDispatch<{}, {}, Action>) => {
-            await axios.post("https://any-title-7a738.firebaseio.com/activeUsers.json", JSON.stringify(user));
+            await axios.post(
+                "https://any-title-7a738.firebaseio.com/activeUsers.json",
+                JSON.stringify(user)
+            );
             dispatch(addActiveUser(user));
             dispatch(setClient(user));
         }

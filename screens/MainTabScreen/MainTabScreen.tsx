@@ -22,6 +22,10 @@ export default function MainTabScreen() {
     setIsGeodataHidden(false);
     setIsDisconnectButtonDisabled(true);
   }
+  const revertStateOnRequestAPIError = () => {
+    setIsGeodataHidden(true);
+    setIsDisconnectButtonDisabled(false);
+  }
   const onDisconnectPressed = () => {
     setIsDisconnectButtonDisabled(true);
     dispatch( deleteActiveUserOnServer(client.id) );
@@ -51,6 +55,7 @@ export default function MainTabScreen() {
           <GeodataAndWeather
             latitude={latitude}
             longitude={longitude}
+            onError={revertStateOnRequestAPIError}
           />
           <TouchableOpacity
             style={isDisconnectButtonDisabled

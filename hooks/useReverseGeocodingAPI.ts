@@ -1,12 +1,28 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function useReverseGeocodingAPI(latitude: number, longitude: number) {
-  const [ reverseGeocodingData, setReverseGeocodingData ] = useState<any>(null);
+export type ReverseGeocodingData = {
+  features: Array<any>
+};
 
-  async function makeAPICall(apiUrl: string) {
-    const reverseGeocodingResponse = await axios.get(apiUrl);
-    setReverseGeocodingData(reverseGeocodingResponse.data);
+type ReverseGeocodingHookReturnType = {
+  reverseGeocodingData: ReverseGeocodingData | null,
+  reverseGeocodingError: string,
+};
+
+export function useReverseGeocodingAPI(latitude: number, longitude: number): ReverseGeocodingHookReturnType {
+  const [ reverseGeocodingData, setReverseGeocodingData ] = useState<ReverseGeocodingData | null>(null);
+  const [ reverseGeocodingError, setError ] = useState<string>("");
+
+  async function makeAPICall(apiUrl: string): Promise<void> {
+    try {
+      const reverseGeocodingResponse = await axios.get(apiUrl);
+      setReverseGeocodingData(reverseGeocodingResponse.data);
+    } catch (err) {
+      console.log(err);
+      setError("Couldn't fetch the reverse geocoding data");
+      return;
+    }
   }
 
   useEffect(() => {
@@ -16,5 +32,8 @@ export function useReverseGeocodingAPI(latitude: number, longitude: number) {
     }
   }, []);
 
-  return reverseGeocodingData || null;
+  return {
+    reverseGeocodingData,
+    reverseGeocodingError
+  };
 }
