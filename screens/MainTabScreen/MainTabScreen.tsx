@@ -4,7 +4,6 @@ import { GeodataAndWeather } from '../../components/GeodataAndWeather/GeodataAnd
 import { useSelector, useDispatch } from 'react-redux';
 import { State, User } from '../../types/types';
 import { setClient, addActiveUser, deleteActiveUserOnServer } from '../../redux/actions/actions';
-import LocationResponses from '../../components/LocationResponses';
 import { styles } from './styles';
 import { AppTitleContent } from '../../components/AppTitleContent/AppTitleContent';
 

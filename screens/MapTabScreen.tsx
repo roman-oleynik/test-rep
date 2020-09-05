@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
-
-import EditScreenInfo from '../components/LocationResponses';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../types/types';
@@ -21,34 +19,34 @@ export default function MapTabScreen() {
   return (
     <View>
       {
-    //     client
-    //     ?
-    //     <MapView
-    //       style={styles.map}
-    //       region={{
-    //         latitude: client.latitude,
-    //         longitude: client.longitude,
-    //         latitudeDelta: 0.015,
-    //         longitudeDelta: 0.0121
-    //       }}
-    //     >
-    //       {
-    //         activeUsers.length > 0 &&
-    //         activeUsers.map(el => {
-    //           return <Marker
-    //             key={el.id}
-    //             coordinate={{
-    //               latitude: el.latitude,
-    //               longitude: el.longitude,
-    //             }}
-    //           />
-    //         })
-    //       }
-    //     </MapView>
-    //     :
-    //     <View style={styles.singleTextView}>
-    //       <Text>Подключитесь, чтобы увидеть карту.</Text>
-    //     </View>
+        client
+        ?
+        <MapView
+          style={styles.map}
+          region={{
+            latitude: client.latitude,
+            longitude: client.longitude,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121
+          }}
+        >
+          {
+            activeUsers.length > 0 &&
+            activeUsers.map(el => {
+              return <Marker
+                key={el.id}
+                coordinate={{
+                  latitude: el.latitude,
+                  longitude: el.longitude,
+                }}
+              />
+            })
+          }
+        </MapView>
+        :
+        <View style={styles.singleTextView}>
+          <Text>Подключитесь, чтобы увидеть карту.</Text>
+        </View>
       }
     </View>
   );

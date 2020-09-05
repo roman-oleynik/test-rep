@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
-
-import EditScreenInfo from '../components/LocationResponses';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 import { State, LocationResponse } from '../types/types';

@@ -71,7 +71,6 @@ export function deleteActiveUserOnServer(id: string) {
         const keyOfUser = await _getKeyOfActiveUserToDelete(id);
         await axios.delete(`https://any-title-7a738.firebaseio.com/activeUsers/${keyOfUser}.json`);
         dispatch(deleteActiveUser(id));
-        dispatch(setClient(null));
     }
 }
 export function fetchActiveUsersFromServer() {
