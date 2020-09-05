@@ -7,6 +7,11 @@ export type User = {
     latitude: number,
     longitude: number,
 };
+export type UserArguments = [
+    string,
+    number,
+    number,
+];
 export type LocationResponse = {
     id: string,
     latitude: number,
@@ -17,6 +22,15 @@ export type LocationResponse = {
     weatherDesc: string,
     wind: number
 };
+export type LocationResponseArguments = [
+    string,
+    number,
+    number,
+    string,
+    number,
+    string,
+    number,
+];
 export type State = {
     client: User,
     activeUsers: User[],

@@ -24,7 +24,7 @@ export function setActiveUsers(users: Record<string, User>): Action {
     };
 };
 
-export function addLocationResponse(response: LocationResponse) {
+export function addLocationResponse(response: LocationResponse): Action {
     return {
         type: ADD_LOCATION_RESPONSE,
         body: response,
@@ -45,7 +45,7 @@ export function deleteActiveUser(userId: string): Action {
     };
 };
 
-export function setChosenLocationResponse(response: LocationResponse) {
+export function setChosenLocationResponse(response: LocationResponse): Action {
     return {
         type: SET_CHOSEN_LOCATION_RESPONSE,
         body: response,

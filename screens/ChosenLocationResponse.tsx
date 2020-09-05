@@ -5,6 +5,9 @@ import EditScreenInfo from '../components/LocationResponses';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { State, LocationResponse } from '../types/types';
+import { Coords } from '../components/Coords/Coords';
+import { Weather } from '../components/Weather/Weather';
+import { Address } from '../components/Address/Address';
 
 const height = Dimensions.get('window').height;
 
@@ -20,21 +23,20 @@ export default function ChosenLocationResponse() {
   } = useSelector((state: State) => state.chosenLocationResponse);
   return (
     <View style={styles.container}>
-      <Text style={styles.subtitle}>Координаты:</Text>
-      <Text>{`Широта: ${latitude.toFixed(4)}`}</Text>
-      <Text>{`Долгота: ${longitude.toFixed(4)}`}</Text>
-      <View>
-        <Text style={styles.subtitle}>Погода:</Text>
-        <View>
-          <Text>{`Температура: ${temperature}°`}</Text>
-          <Text>{weatherDesc}</Text>
-          <Text>{`Ветер: ${wind} м/с.`}</Text>
-        </View>
-      </View>
-      <View>
-        <Text style={styles.subtitle}>Местоположение:</Text>
-        <Text>{location}</Text>
-      </View>
+      <Coords
+        latitude={latitude}
+        longitude={longitude}
+      />
+      <Weather
+        title="Погода:"
+        temperature={`${temperature}°`}
+        description={weatherDesc}
+        wind={`${wind} м/с.`}
+      />
+      <Address
+        title="Местоположение:"
+        address={location}
+      />
     </View>
   );
 }

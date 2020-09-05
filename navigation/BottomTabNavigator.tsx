@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import MainTabScreen from '../screens/MainTabScreen';
+import MainTabScreen from '../screens/MainTabScreen/MainTabScreen';
 import HistoryTabScreen from '../screens/HistoryTabScreen';
 import MapTabScreen from '../screens/MapTabScreen';
 import ChosenLocationResponse from '../screens/ChosenLocationResponse';
