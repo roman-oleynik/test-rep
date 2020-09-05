@@ -4,8 +4,13 @@ import { StyleSheet, Image, View, Text, TouchableOpacity, ScrollView } from 'rea
 
 
 
-export default function LocationResponses({ path }: { path: string }) {
-  return <Text>EditScreenInfo</Text>
+export default class LocationResponses extends React.Component {
+  constructor(props: any) {
+    super(props);
+  }
+  render() {
+    return <Text>aasfsafsa</Text>
+  }
 }
 
 function handleHelpPress() {

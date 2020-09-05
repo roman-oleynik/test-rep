@@ -12,7 +12,10 @@ export type LocationResponse = {
     latitude: number,
     longitude: number,
     date: string,
-    location: string
+    location: string,
+    temperature: number,
+    weatherDesc: string,
+    wind: number
 };
 export type State = {
     client: User,

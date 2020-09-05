@@ -4,7 +4,7 @@ import { GeodataAndWeather } from '../components/GeodataAndWeather';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../types/types';
 import { setClient, addActiveUser, deleteActiveUserOnServer } from '../redux/actions/actions';
-import { logo } from '../assets/images/logo.png';
+
 
 function useLocation() {
 	const [latitude, setLatitude] = useState<any>(0);
