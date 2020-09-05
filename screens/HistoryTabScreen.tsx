@@ -29,14 +29,14 @@ export default function HistoryTabScreen({navigation}: Props) {
           locationResponses.length > 0
           ?
           locationResponses
-          .sort((a, b) => new Date(a.date).getMilliseconds() - new Date(b.date).getMilliseconds())
+          .sort((a, b) => a.date.getMilliseconds() - b.date.getMilliseconds())
           .map((el: LocationResponse) => {
             return <TouchableOpacity
               key={el.id}
               onPress={() => onLocationResponsePress(el)}
               style={styles.link}>
                 <View>
-                  <Text style={styles.textBig}>{new Date(el.date).toLocaleDateString()}</Text>
+                  <Text style={styles.textBig}>{el.date.toUTCString()}</Text>
                   <Text style={styles.textMedium}>{el.location}</Text>
                   <Text style={styles.textSmall}>{el.latitude.toFixed(4)}/{el.longitude.toFixed(4)}</Text>
                 </View>

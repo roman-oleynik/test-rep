@@ -11,7 +11,7 @@ export type LocationResponse = {
     id: string,
     latitude: number,
     longitude: number,
-    date: string,
+    date: Date,
     location: string,
     temperature: number,
     weatherDesc: string,

@@ -46,7 +46,7 @@ export function GeodataAndWeather({latitude, longitude}: Props) {
       id,
       latitude,
       longitude,
-      date: new Date().toISOString().slice(0,10),
+      date: new Date(),
       location,
       temperature,
       weatherDesc,
