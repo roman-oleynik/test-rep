@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { GeodataAndWeather } from '../../components/GeodataAndWeather/GeodataAndWeather';
 import { useSelector, useDispatch } from 'react-redux';
 import { State, User } from '../../types/appDataTypes';
-import { deleteActiveUserOnServer } from '../../redux/actions/actions';
+import { deleteActiveUserOnServer, setError } from '../../redux/actions/actions';
 import { styles } from './styles';
 import { AppTitleContent } from '../../components/AppTitleContent/AppTitleContent';
 import { useGeolocation } from '../../hooks/useGeolocation';
@@ -12,6 +12,7 @@ import { useGeolocation } from '../../hooks/useGeolocation';
 export default function MainTabScreen() {
   const dispatch = useDispatch();
   const client = useSelector((state: State) => state.client);
+  const error = useSelector((state: State) => state.error);
 
   const { latitude, longitude } = useGeolocation();
 
@@ -20,11 +21,6 @@ export default function MainTabScreen() {
   
   const onConnectPressed = () => {
     setIsGeodataHidden(false);
-    setIsDisconnectButtonDisabled(true);
-  }
-  const revertStateOnRequestAPIError = () => {
-    setIsGeodataHidden(true);
-    setIsDisconnectButtonDisabled(false);
   }
   const onDisconnectPressed = () => {
     setIsDisconnectButtonDisabled(true);
@@ -40,12 +36,34 @@ export default function MainTabScreen() {
       setIsDisconnectButtonDisabled(false);
     }
   };
+  const onReloadPressed = () => {
+    dispatch( setError('') );
+  };
+  const onBackPressed = () => {
+    setIsGeodataHidden(true);
+    dispatch( setError('') );
+  };
 
   useEffect(() => {
     hideGeodataOnClientIsNull(client);
-    enableButtonOnClientInit(client)
+    enableButtonOnClientInit(client);
   }, [client]);
 
+  if (error) {
+    return <View style={styles.container}>
+      <Text>{error}</Text>
+      <TouchableOpacity
+        style={styles.buttonConnect}
+        onPress={onReloadPressed}>
+          <Text style={styles.buttonText}>Попробовать снова</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonDisconnect}
+        onPress={onBackPressed}>
+          <Text style={styles.buttonText}>Назад</Text>
+      </TouchableOpacity>
+    </View>
+  }
   return (
     <View style={styles.container}>
       {
@@ -55,7 +73,6 @@ export default function MainTabScreen() {
           <GeodataAndWeather
             latitude={latitude}
             longitude={longitude}
-            onError={revertStateOnRequestAPIError}
           />
           <TouchableOpacity
             style={isDisconnectButtonDisabled

@@ -36,4 +36,5 @@ export type State = {
     activeUsers: User[],
     locationResponses: LocationResponse[],
     chosenLocationResponse: LocationResponse,
+    error: string,
 };

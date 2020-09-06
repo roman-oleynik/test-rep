@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { generateId } from '../../modules/generateId';
-import { postActiveUserToServer, addLocationResponse } from '../../redux/actions/actions';
+import { postActiveUserToServer, addLocationResponse, setError } from '../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import { LocationResponseArguments, User, UserArguments, LocationResponse } from '../../types/appDataTypes';
 import { styles } from './styles';
@@ -15,20 +15,19 @@ import { Address } from '../Address/Address';
 type Props = {
 	latitude: number,
   longitude: number,
-  onError: () => void,
 };
 
 
-export function GeodataAndWeather({latitude, longitude, onError}: Props) {
+export function GeodataAndWeather({latitude, longitude}: Props) {
   const dispatch = useDispatch();
   const { weather, weatherError } = useWeatherAPI(latitude, longitude);
   const { reverseGeocodingData, reverseGeocodingError } = useReverseGeocodingAPI(latitude, longitude);
-  
+
   useEffect(() => {
     if (weather && reverseGeocodingData) {
       const idOfNewClient = generateId();
-
       postClientDataToServer(idOfNewClient, latitude, longitude);
+      
       startAddingLocationResponse(
         idOfNewClient,
         latitude,
@@ -38,12 +37,12 @@ export function GeodataAndWeather({latitude, longitude, onError}: Props) {
         weather.weather.description,
         weather.wind_spd
       );
-    } 
+    }
     if (weatherError) {
-      onError();
+      dispatch( setError(weatherError) );
     }
     if (reverseGeocodingError) {
-      onError();
+      dispatch( setError(reverseGeocodingError) );
     }
   }, [weather, reverseGeocodingData]);
 
@@ -59,7 +58,7 @@ export function GeodataAndWeather({latitude, longitude, onError}: Props) {
 
 	return <View style={styles.container}>
       {
-        latitude && longitude
+        latitude && longitude && weather && reverseGeocodingData
         ?
         <View>
           <Coords
@@ -87,7 +86,9 @@ export function GeodataAndWeather({latitude, longitude, onError}: Props) {
           </View>
         </View>
         :
-        <Text>Loading...</Text>
+        <View style={styles.singleTextView}>
+          <Text>Загрузка...</Text>
+        </View>
       }
 			
 	</View>

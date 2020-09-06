@@ -1,4 +1,5 @@
 export const SET_CLIENT = "SET_CLIENT";
+export const SET_ERROR = "SET_ERROR";
 
 export const SET_ACTIVE_USERS = "SET_ACTIVE_USERS";
 export const ADD_ACTIVE_USER = "ADD_ACTIVE_USER";

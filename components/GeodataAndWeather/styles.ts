@@ -34,4 +34,10 @@ export const styles = StyleSheet.create({
     separator: {
       marginVertical: 60,
     },
+    singleTextView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingTop: 20,
+    }
 });

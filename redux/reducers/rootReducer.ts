@@ -7,7 +7,8 @@ import {
     GET_LOCATION_RESPONSES,
     ADD_LOCATION_RESPONSE,
     DELETE_LOCATION_RESPONSE,
-    SET_CHOSEN_LOCATION_RESPONSE
+    SET_CHOSEN_LOCATION_RESPONSE,
+    SET_ERROR
 } from '../../types/constants';
 import { combineReducers } from 'redux';
 
@@ -15,7 +16,7 @@ import { combineReducers } from 'redux';
 function clientReducer(state: User | null = null, action: Action) {
     switch(action.type) {
         case SET_CLIENT:
-            return {...action.body};
+            return action.body;
         case DELETE_ACTIVE_USER:
             return null;
         default:
@@ -62,9 +63,19 @@ function chosenLocationResponseReducer (state: LocationResponse = {} as Location
     }
 };
 
+function errorReducer(state: string = "", action: Action) {
+    switch(action.type) {
+        case SET_ERROR:
+            return action.body;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<State>({
     client: clientReducer,
     activeUsers: activeUsersReducer,
     locationResponses: locationResponsesReducer,
     chosenLocationResponse: chosenLocationResponseReducer,
+    error: errorReducer,
 });
