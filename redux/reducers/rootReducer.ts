@@ -4,7 +4,7 @@ import {
     SET_ACTIVE_USERS,
     ADD_ACTIVE_USER,
     DELETE_ACTIVE_USER,
-    GET_LOCATION_RESPONSES,
+    SET_LOCATION_RESPONSES,
     ADD_LOCATION_RESPONSE,
     DELETE_LOCATION_RESPONSE,
     SET_CHOSEN_LOCATION_RESPONSE,
@@ -43,8 +43,8 @@ function activeUsersReducer(state: User[] = [], action: Action) {
 
 function locationResponsesReducer(state: LocationResponse[] = [], action: Action) {
     switch(action.type) {
-        case GET_LOCATION_RESPONSES:
-            return state;
+        case SET_LOCATION_RESPONSES:
+            return action.body;
         case ADD_LOCATION_RESPONSE:
             return [...state, action.body];
         case DELETE_LOCATION_RESPONSE:

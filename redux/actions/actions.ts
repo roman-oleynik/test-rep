@@ -7,7 +7,8 @@ import {
     DELETE_ACTIVE_USER,
     ADD_LOCATION_RESPONSE,
     SET_CHOSEN_LOCATION_RESPONSE,
-    SET_ERROR
+    SET_ERROR,
+    SET_LOCATION_RESPONSES
     } from "../../types/constants";
 import { ThunkDispatch } from "redux-thunk";
 
@@ -29,6 +30,12 @@ export function addLocationResponse(response: LocationResponse): Action {
     return {
         type: ADD_LOCATION_RESPONSE,
         body: response,
+    };
+};
+export function setLocationResponses(responses: LocationResponse[]): Action {
+    return {
+        type: SET_LOCATION_RESPONSES,
+        body: responses,
     };
 };
 
@@ -67,10 +74,11 @@ export function postActiveUserToServer(user: User | null) {
                     "https://any-title-7a738.firebaseio.com/activeUsers.json",
                     JSON.stringify(user),
                 );
-                dispatch(addActiveUser(user));
-                dispatch(setClient(user));
+                dispatch( addActiveUser(user) );
+                dispatch( setClient(user) );
             } catch {
-                console.error("Failed REST API request");
+                dispatch( setError('Failed REST API request') );
+                dispatch( setLocationResponses([]) );
             }
         }
     }
