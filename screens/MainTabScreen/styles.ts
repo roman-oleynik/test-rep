@@ -29,4 +29,10 @@ export const styles = StyleSheet.create({
       padding: 20,
       color: 'white'
     },
+    errorText: {
+      textAlign: 'center',
+      paddingVertical: 20,
+      color: 'darkred',
+      fontSize: 16,
+    }
   });

@@ -17,7 +17,7 @@ export default function MapTabScreen() {
   }, [client]);
   return (
     <View>
-      {/* {
+      {
         client
         ?
         <MapView
@@ -46,7 +46,7 @@ export default function MapTabScreen() {
         <View style={styles.singleTextView}>
           <Text>Подключитесь, чтобы увидеть карту.</Text>
         </View>
-      } */}
+      }
     </View>
   );
 }

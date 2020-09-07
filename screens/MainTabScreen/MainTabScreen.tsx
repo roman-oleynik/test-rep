@@ -51,7 +51,7 @@ export default function MainTabScreen() {
 
   if (error) {
     return <View style={styles.container}>
-      <Text>{error}</Text>
+      <Text style={styles.errorText}>{error}</Text>
       <TouchableOpacity
         style={styles.buttonConnect}
         onPress={onReloadPressed}>
