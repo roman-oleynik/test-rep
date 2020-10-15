@@ -1,0 +1,10 @@
+@import './variables.scss';
+
+@mixin flex($direction: row, $j-content: flex-start, $a-items: stretch, $wrap: nowrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $j-content;
+    align-items: $a-items;
+    flex-wrap: $wrap;
+}
+

@@ -1,13 +1,8 @@
-node_modules/**/*
-.expo/*
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
-
-# macOS
-.DS_Store
+.vscode
+.idea
+.DS_STORE
+node_modules
+.module-cache
+*.log*
+build
+dist

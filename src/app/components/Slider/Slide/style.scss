@@ -1,0 +1,14 @@
+@import '../../../scss/mixins.scss';
+
+.slide {
+    height: 100%;
+    width: 100%;
+    @include flex(column, flex-start, center);
+    padding: 3%;
+    border: 1px solid black;
+    overflow-y: hidden;
+
+    .slide__children {
+        @include flex(column, flex-start, center);
+    }
+}
