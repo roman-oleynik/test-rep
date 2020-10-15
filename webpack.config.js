@@ -24,13 +24,22 @@ module.exports = {
   },
   target: 'web',
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.js', '.ts', '.tsx', 'jsx', ''],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
     mainFields: ['module', 'browser', 'main'],
     alias: {
-      app: path.resolve(__dirname, 'src/app/')
-    }
+      app: path.resolve(__dirname, 'src/app/'),
+      //tests
+      config$: './configs/app-config.js',
+      react: './vendor/react-master',
+    },
+    modules: [
+      'node_modules',
+      'bower_components',
+      'shared',
+      '/shared/vendor/modules',
+    ],
   },
   module: {
     rules: [
@@ -49,11 +58,8 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
           'style-loader',
-          // Translates CSS into CommonJS
           'css-loader',
-          // Compiles Sass to CSS
           'sass-loader',
         ],
       },
