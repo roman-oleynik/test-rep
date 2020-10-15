@@ -12,8 +12,9 @@ export function XMarkIcon({ size }: Props) {
             x="0px"
             y="0px"
             viewBox="0 0 28 28"
-            className="x-mark-icon"
             style={{height: size + "px", width: size + 'px'}}
+            className="x-mark-icon"
+
         >
             <g id="x">
                 <g>

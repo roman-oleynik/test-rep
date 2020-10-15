@@ -7,6 +7,7 @@
   "main": "index.js",
   "scripts": {
     "predeploy": "npm run build",
+    "deploy": "netlify deploy --prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
     "build": "webpack -p --progress --colors"

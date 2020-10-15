@@ -58,14 +58,14 @@ export function Slider({ data, collage, close }: Props) {
                         disabled={infinite ? false : curSlideNumber <= 1 ? true : false}
                         dispatch={dispatch}
                     >
-                        <LeftArrowIcon size={20} />
+                        <LeftArrowIcon size={24} />
                     </SwitchButton>
                     <SwitchButton
                         direction={"next"}
                         disabled={infinite ? false : curSlideNumber >= slidesAmount ? true : false}
                         dispatch={dispatch}
                     >
-                        <RightArrowIcon size={20} />
+                        <RightArrowIcon size={24} />
                     </SwitchButton>
 
                     <TransitionGroup className="animation-container">

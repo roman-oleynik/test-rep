@@ -14,7 +14,7 @@ export function CloseSliderButton({ callback }: Props) {
           data-testid="close"
           onClick={callback}
       >
-          <XMarkIcon size={20} />
+          <XMarkIcon size={26} />
       </button>
   );
 };
