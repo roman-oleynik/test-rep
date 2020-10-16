@@ -1,4 +1,4 @@
-# A slider for HTML content on React
+# A responsive slider for HTML content on React.
 
 ## Installation
 
@@ -18,7 +18,7 @@ $ npm start
 $ npm run build
 ```
 
-## Deploy (to the [Netlify]
+## Build and deploy (to the [Netlify])
 
 ```
 $ npm run deploy
