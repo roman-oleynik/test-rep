@@ -6,7 +6,7 @@
 $ npm i
 ```
 
-## Running
+## Run locally
 
 ```
 $ npm start
@@ -18,7 +18,7 @@ $ npm start
 $ npm run build
 ```
 
-## Test
+## Run tests
 
 ```
 $ npm test
