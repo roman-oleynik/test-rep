@@ -12,6 +12,7 @@ export function InfiniteIcon({ size, highlighted }: Props) {
             x="0px"
             y="0px"
             viewBox="0 0 500 500"
+            data-testid="infinite-icon"
             className={`infinite-icon ${highlighted ? "infinite-icon_highlighted" : ""}`}
             style={{height: size + "px", width: size + 'px'}}
         >

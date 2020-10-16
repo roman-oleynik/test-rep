@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Slider } from '../../components/Slider/Root/Slider';
+import { Slider } from '../../components/Slider/Root';
 import './style.scss';
 import { SlidesModel } from '../../components/Slider/model/model';
 import { withRoundedBackground } from '../../components/Slider/HOC/withRoundedBackground';

@@ -18,6 +18,7 @@ export function InfiniteButton({ dispatch, infinite }: Props) {
       <button
           type="button"
           className="slider__infinite"
+          data-testid="slider-infinite"
           onClick={handleInfiniteChange}
       >
           <InfiniteIcon size={26} highlighted={infinite} />

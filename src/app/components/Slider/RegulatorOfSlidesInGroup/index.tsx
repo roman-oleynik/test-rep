@@ -19,6 +19,7 @@ export function RegulatorOfSlidesInGroup({dispatch, slidesInGroup}: Props) {
         <div className="slider__range">
             <input
                 id="amountOfSlidesOnScreen"
+                data-testid="amountOfSlidesOnScreen"
                 className="slider__range-input"
                 type="range"
                 min={0}

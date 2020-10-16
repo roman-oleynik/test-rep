@@ -40,7 +40,7 @@ export function Slider({ data, collage, close }: Props) {
     return (
         <section className="slider">
             {
-                <div className="slider__top">
+                <div className="slider__top" data-testid="slider-top">
                     {
                         collage &&
                         withRoundedBackground(<RegulatorOfSlidesInGroup
@@ -77,7 +77,7 @@ export function Slider({ data, collage, close }: Props) {
                     </TransitionGroup>
                 </>
             </SwipeFunctionalityProvider>
-            <div className="slider__bottom">
+            <div className="slider__bottom" data-testid="slider-bottom">
                 {
                     withRoundedBackground(
                         <div className="flex-row-center">

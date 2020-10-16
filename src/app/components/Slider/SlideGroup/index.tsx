@@ -1,6 +1,6 @@
 import React from 'react';
 import { SlideData } from '../types';
-import { Slide } from '../Slide/Slide';
+import { Slide } from '../Slide';
 import './style.scss';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export function SlideGroup({ slides }: Props) {
-    return <div className="slide-group">
+    return <div className="slide-group" data-testid="slide-group">
         {
             slides.map((el: SlideData, i: number) => {
                 return <div key={i} style={{
