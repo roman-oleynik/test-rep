@@ -38,15 +38,33 @@ export const reducer = (state: SliderState, action: Action): SliderState => {
             }
             return {...state, curSlideNumber: state.curSlideNumber + 1};
         case GO_TO_CONCRETE_SLIDE:
+            if (action.body < 1) {
+                return {...state, curSlideNumber: 1};
+            }
+            if (action.body > state.slidesAmount) {
+                return {...state, curSlideNumber: state.slidesAmount};
+            }
             return {...state, curSlideNumber: action.body};
         case SET_INFINITE:
+            if (typeof action.body !== "boolean") {
+                return state;
+            }
             return {...state, infinite: action.body};
         case SET_NUM_OF_SLIDE_GROUPS:
+            if (typeof action.body !== "number" || action.body < 1) {
+                return state;
+            }
             return {...state, slidesAmount: action.body};
         case SET_NUM_OF_SLIDES_IN_GROUP:
+            if (action.body < 0 || action.body > 2) {
+                return state;
+            }
             return {...state, slidesInGroup: Math.pow(2, action.body)};
         case SET_LAST_TYPE_OF_SLIDE_SWITCH:
-            return {...state, typeOfLastSlideSwitch: action.body};
+            if (action.body === "" || action.body === "prev" || action.body === "next") {
+                return {...state, typeOfLastSlideSwitch: action.body};
+            }
+            return state;
         default:
             return state;
     }

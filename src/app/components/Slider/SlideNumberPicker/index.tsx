@@ -41,6 +41,7 @@ export function SlideNumberPicker({ dispatch, slidesAmount, curSlideNumber }: Pr
         <div
             role="navigation"
             className="slider__nav"
+            data-testid="slider-nav"
         >
             <form
                 className="slider__form"

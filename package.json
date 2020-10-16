@@ -8,13 +8,17 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "netlify deploy --prod",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
     "build": "webpack -p --progress --colors"
   },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.12.0",
+    "@testing-library/react": "^11.1.0",
     "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.3",
     "@types/node": "^13.11.0",
@@ -26,12 +30,14 @@
     "@types/redux-actions": "^2.6.1",
     "@types/webpack": "^4.41.0",
     "@types/webpack-env": "^1.15.1",
+    "babel-jest": "^26.5.2",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.0.0-beta.11",
+    "jest": "^26.5.3",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "postcss": "^7.0.25",
@@ -43,6 +49,7 @@
     "postcss-url": "^8.0.0",
     "prettier": "^2.0.2",
     "react-hot-loader": "^4.12.18",
+    "react-test-renderer": "^16.14.0",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
@@ -64,5 +71,18 @@
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react",
+      "@babel/typescript"
+    ]
   }
 }
