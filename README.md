@@ -1,31 +1,24 @@
-# Slider for HTML-content on React
+# Product cards on React
 
-## Installation
+## Install json-server
+
+```
+$ npm i -g json-server
+```
+
+## Run it
+
+```
+$ json-server -w -p 4000 products.json
+```
+
+## Install the project
 
 ```
 $ npm i
 ```
-
-## Run locally
+## Run the project
 
 ```
 $ npm start
-```
-
-## Build
-
-```
-$ npm run build
-```
-
-## Run tests
-
-```
-$ npm test
-```
-
-## Build and deploy (to the [Netlify])
-
-```
-$ npm run deploy
 ```
