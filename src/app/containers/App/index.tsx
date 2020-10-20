@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
-import { Slider } from '../../components/Slider/Root/Slider';
+import React, { useEffect, useState } from 'react';
+import { Product } from 'app/types';
+import { ProductCard } from 'app/components/ProductCard/Root';
 import './style.scss';
-import { SlidesModel } from '../../components/Slider/model/model';
-import { withRoundedBackground } from '../../components/Slider/HOC/withRoundedBackground';
 
 
 
 function App() {
-  const [ isSliderVisible, setIsSliderVisible ] = useState<boolean>(false);
+  const [ products, setProducts ] = useState<Product[]>([]);
+
+  const fetchProducts = () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:4000/data', false);
+    xhr.send();
+
+    if (xhr.status != 200) {
+      console.log(xhr.status + ': ' + xhr.statusText );
+    } else {
+      setProducts(JSON.parse(xhr.responseText));
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
-    <main className="App">
+    <div className="products-list">
       {
-        isSliderVisible
-        ?
-        <Slider
-          data={SlidesModel.data}
-          collage
-          close={() => setIsSliderVisible(false)}
-        />
-        :
-        <>
-          <h1>Here's the presentation about design patterns.</h1>
-          {
-              <button
-                style={{background: "transparent", border: "0", cursor: "pointer"}}
-                onClick={() => setIsSliderVisible(true)}
-              >
-                {
-                  withRoundedBackground(<>Open the slider</>)
-                }
-              </button>
-          }
-        </>
+        products.map((el: Product) => <ProductCard key={el.productId} data={el} />)
       }
-    </main>
+    </div>
   );
 }
 

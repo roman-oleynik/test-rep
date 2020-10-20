@@ -1,0 +1,40 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+
+
+.product-card {
+    @include flex(column, flex-start, flex-end);
+    min-width: 300px;
+    max-width: 750px;
+    border: 1px solid $dark;
+    overflow: hidden;
+
+    .product-card__right-column {
+        .product-card__interactive {
+            width: 100%;
+            @include flex(row, space-around, center);
+            padding: 10px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .product-card {
+        position: relative;
+        @include flex(column, flex-start, flex-start, wrap);
+        height: 275px;
+        width: 750px;
+        padding: 10px;
+
+        .product-card__right-column {
+            padding-top: 16px;
+            order: 4;
+            @include flex(column, flex-start, flex-end);
+
+            .product-card__interactive {
+                padding: 0px;
+            }
+        }
+    }
+}

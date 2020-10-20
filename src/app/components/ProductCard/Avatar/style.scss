@@ -1,0 +1,14 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.product-card__picture {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .product-card__picture {
+        order: 1;
+        width: 160px;
+        margin-bottom: 90px;
+    }
+}

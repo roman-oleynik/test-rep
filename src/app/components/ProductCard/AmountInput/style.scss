@@ -1,0 +1,36 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.product-card__amount-container {
+    position: relative;
+
+    .product-card__spin {
+        height: 20px;
+        width: 30px;
+        border: 0;
+    }
+    .product-card__spin_top {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: url(../../../../assets/images/templates/jquery.fs.stepper-arrows.png) no-repeat;
+        background-position: -25px 0px;
+    }
+    .product-card__spin_bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: url(../../../../assets/images/templates/jquery.fs.stepper-arrows.png) no-repeat;
+        background-position: -25px -20px;
+    }
+    .product-card__amount {
+        height: 40px;
+        width: 60px;
+        padding-left: 5px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        margin: 0;
+    }
+}

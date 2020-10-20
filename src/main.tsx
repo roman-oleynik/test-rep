@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/containers/App';
 
-// prepare store
+import 'normalize.css';
 
 ReactDOM.render(
-    <App />,
+  <App />,
   document.getElementById('root')
 );

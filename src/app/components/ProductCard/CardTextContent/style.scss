@@ -1,0 +1,31 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.product-card__code-section {
+    .product-card__text-content {
+        width: 100%;
+        padding: 10px;
+
+        .product-card__title {
+            padding: 10px 0;
+            font-size: 14px;
+            color: $dark;
+        }
+        .product-card__associated {
+            .text-bold {
+                font-size: 13px;
+            }
+            .product-card__associated-link {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .product-card__text-content {
+        order: 3;
+        width: 300px;
+        padding: 20px 0;
+    }
+}

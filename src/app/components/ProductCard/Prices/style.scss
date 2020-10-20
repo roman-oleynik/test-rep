@@ -1,0 +1,27 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.product-card__price {
+    @include flex(column, flex-start, flex-end);
+    padding: 10px;
+
+    .product-card__price-label {
+        font-size: 25px;
+    }
+    .product-card__price-label_discount {
+        font-weight: bold;
+    }
+    .product-card__price-score{
+        padding: 5px 0;
+        font-size: 12px;
+        color: $grey;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-card__price {
+        @include flex(column, flex-start, flex-end);
+        padding: 10px;
+        padding-right: 0;
+    }
+}

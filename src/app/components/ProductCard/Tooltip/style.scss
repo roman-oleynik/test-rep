@@ -1,0 +1,46 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.product-card__tooltip {
+    position: relative;
+    height: 44px;
+    width: 90%;
+    align-self: center;
+    @include flex(row, flex-start, center);
+    padding: 5px 10px;
+    margin: 10px 0;
+    border: 1px solid $grey;
+
+    &::before {
+        content: '▼';
+        position: absolute;
+        bottom: -10px;
+        left: 20px;
+        font-size: 14px;
+        line-height: 14px;
+        color: $white;
+        text-shadow: 0px 2px 0px $grey;
+    }
+    .product-card__tooltip-icon {
+        height: 15px;
+        width: 15px;
+        margin: 10px;
+        float: left;
+        background: url(../../../../assets/images/icons/product/unit--i.png) no-repeat center top / cover;
+    }
+    .product-card__tooltip-text {
+        position: relative;
+        @include flex(column, center, flex-start);
+        .product-card__unit-type {
+            font-size: 12px;
+        }
+        .product-card__unit-size {
+            font-size: 12px;
+        }
+    }
+}
+@media (min-width: 768px) {
+    .product-card__tooltip {
+        width: 100%;
+    }
+}

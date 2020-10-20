@@ -1,0 +1,31 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.product-card__switcher {
+    @include flex(row, flex-end, center);
+    padding: 0 10px;
+
+    .bg {
+        padding: 6px;
+    }
+    .bg_active {
+        background: $dark;
+    }
+    .product-card__measure-unit {
+        font-size: 13px;
+        position: relative;
+        @include flex(row, center, center);
+        border-bottom: 1px dotted $grey;
+        color: $grey;
+    }
+    .product-card__measure-unit_active {
+        color: $white;
+        border-bottom: 1px dotted transparent;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-card__switcher {
+        padding: 0px;
+    }
+}
