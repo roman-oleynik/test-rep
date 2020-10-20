@@ -12,7 +12,12 @@ $ npm i -g json-server
 $ json-server -w -p 4000 products.json
 ```
 
-## Run a project
+## Install the project
+
+```
+$ npm i
+```
+## Run the project
 
 ```
 $ npm start
