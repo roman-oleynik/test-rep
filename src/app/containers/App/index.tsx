@@ -10,7 +10,7 @@ function App() {
 
   const fetchProducts = () => {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:4000/data', false);
+    xhr.open('GET', 'https://my-project-b1ee7.firebaseio.com/data.json', false);
     xhr.send();
 
     if (xhr.status != 200) {
